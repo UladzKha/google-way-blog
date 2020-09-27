@@ -1,6 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import initDb from "../../helpers/initDb";
+import Product from "../../models/product";
+
+initDb();
 
 export default (req, res) => {
-  res.statusCode = 200
-  res.json({ name: 'John Doe' })
-}
+  Product.find().then((products) => {
+    res.status(200).json(products);
+  });
+};
