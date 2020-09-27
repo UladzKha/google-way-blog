@@ -1,4 +1,5 @@
 import mongoose, { mongo } from "mongoose";
+
 function initDB() {
   if (mongoose.connections[0].readyState) {
     console.log("already connected");
