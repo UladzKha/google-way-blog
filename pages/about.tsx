@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
-import Posts from '../models/post';
+import Posts from "../models/post";
+import initDb from "../helpers/initDb";
 
 export default function About({ posts }) {
   console.log(posts, "posts");
@@ -10,14 +11,13 @@ export default function About({ posts }) {
   );
 }
 
-export async function getStaticProps() {
-  let br = await Posts.find().then(data => {
-    return JSON.stringify(data)
-  });
+export async function getServerSideProps(context) {
+  initDb();
+  const br = await Posts.find()
+    .catch(console.error)
+    .then((data) => {
+      return JSON.stringify(data);
+    });
 
-  return{
-    props:{
-      posts: br
-    }
-  }
+  return { props: { posts: br } };
 }
