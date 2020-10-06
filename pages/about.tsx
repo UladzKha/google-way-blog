@@ -1,9 +1,8 @@
 import { Container } from "react-bootstrap";
-import Posts from "../models/post";
-import initDb from "../helpers/initDb";
+import { connectToDatabase } from "../util/mongodb";
 
-export default function About({ posts }) {
-  console.log(posts, "posts");
+export default function About({ text }) {
+  console.log(text, "posts");
   return (
     <Container>
       <h1>About</h1>
@@ -11,13 +10,16 @@ export default function About({ posts }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  initDb();
-  const br = await Posts.find()
-    .catch(console.error)
-    .then((data) => {
-      return JSON.stringify(data);
-    });
 
-  return { props: { posts: br } };
+export async function getStaticProps(context) {
+  const { db } = await connectToDatabase();
+
+  const text = await db
+    .collection("about")
+    .find({})
+    .sort({ metacritics: -1 })
+    // .limit(20)
+    .toArray();
+
+  return { props: { text: JSON.stringify(text) } };
 }

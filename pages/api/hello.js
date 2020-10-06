@@ -1,12 +1,16 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import initDb from "../../helpers/initDb";
-import Product from "../../models/product";
-import Posts from '../../models/post';
+import { connectToDatabase } from "../../util/mongodb";
 
-// initDb();
+export default async (req, res) => {
+  const { db } = await connectToDatabase();
 
-export default (req, res) => {
-  Product.find().then((products) => {
-    res.status(200).json(products);
-  });
+  const posts = await db
+    .collection("posts")
+    .find({})
+    .sort({ metacritics: -1 })
+    // .limit(20)
+    .toArray();
+
+  res.json(posts);
+  // res.statusCode = 200;
+  // res.json({ name: "John Doe" });
 };
