@@ -1,13 +1,30 @@
+import Link from "next/link";
 import { Container } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
-export default function About({ posts }) {
-  console.log(posts, "posts");
+function renderPosts(posts) {
+  console.log(posts, "POSTS");
+
   return (
-    <Container>
-      <h1>BLOG</h1>
-    </Container>
+    <>
+      {posts.map(({ _id, title, description, date }) => (
+        <div key={_id}>
+          <Link href={`/post/${encodeURIComponent(title.replace(' ', ''))}`}>
+            <a>{title}</a>
+          </Link>
+          <h2>{description}</h2>
+          <h3>{date}</h3>
+        </div>
+      ))}
+    </>
   );
+}
+
+export default function About({ posts }) {
+  const myPosts = JSON.parse(posts);
+
+  // console.log(myPosts, "posts");
+  return <Container>{renderPosts(myPosts)}</Container>;
 }
 
 export async function getStaticProps(context) {
@@ -16,7 +33,7 @@ export async function getStaticProps(context) {
   const posts = await db
     .collection("posts")
     .find({})
-    .sort({ metacritics: -1 })
+    .sort({ date: -1 })
     // .limit(20)
     .toArray();
 

@@ -2,14 +2,14 @@ import { Container } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
 export default function About({ text }) {
-  console.log(text, "posts");
+  const aaa = JSON.parse(text);
+  console.log(aaa[0].body);
   return (
     <Container>
-      <h1>About</h1>
+      <div dangerouslySetInnerHTML={{ __html: aaa[0].body }} />
     </Container>
   );
 }
-
 
 export async function getStaticProps(context) {
   const { db } = await connectToDatabase();
