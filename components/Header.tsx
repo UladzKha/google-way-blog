@@ -7,13 +7,13 @@ export default function Header() {
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand>
-          <img
+          {/* <img
             src="./logo.png"
             height="30"
             width="30"
             className="d-inline-block align-top"
             alt="logo-image"
-          />
+          /> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <NavbarCollapse id="responsive-navbar-nav">
