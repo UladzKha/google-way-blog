@@ -36,18 +36,13 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const { db } = await connectToDatabase();
 
-  const posts: Array<POST> = await db
-    .collection("posts")
-    .find({})
-    .sort({ date: -1 })
-    // .limit(20)
-    .toArray();
+  const ids: Array<string> = await db.collection("posts").distinct("_id", {});
 
   const paths: Array<Object> = [];
-  posts.map((post) => {
+  ids.map((post) => {
     paths.push({
       params: {
-        id: post._id.toString(),
+        id: post.toString(),
       },
     });
   });
