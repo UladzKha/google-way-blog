@@ -1,16 +1,22 @@
 import { ObjectId } from "mongodb";
+import { Container } from "react-bootstrap";
 import { connectToDatabase } from "../../util/mongodb";
 
 export default function Post({ post }) {
   const myPost = JSON.parse(post);
-
   const { title, description, date } = myPost;
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   return (
-    <>
-      <h1>{title}</h1>
-      <h2>{description}</h2>
-      <h3>{date}</h3>
-    </>
+    <Container>
+      <div dangerouslySetInnerHTML={{ __html: title }} />
+      <div dangerouslySetInnerHTML={{ __html: description }} />
+      <h5>{new Date(date).toLocaleDateString("En-en", options)}</h5>
+    </Container>
   );
 }
 

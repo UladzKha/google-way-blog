@@ -1,19 +1,29 @@
 import Link from "next/link";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
 function renderPosts(posts) {
-  // console.log(posts, "POSTS");
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
-  return posts.map(({ _id, title, description, date }) => (
-    <div key={_id}>
-      <Link href="/post/[id]" as={`/post/${_id}`}>
-        <a>{title}</a>
-      </Link>
-      <h2>{description}</h2>
-      <h3>{date}</h3>
-    </div>
-  ));
+  return (
+    <Container>
+      {posts.map(({ _id, title, description, date }) => (
+        <div key={_id}>
+          <div dangerouslySetInnerHTML={{ __html: title }} />
+          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <h5>{new Date(date).toLocaleDateString("En-en", options)}</h5>
+          <Link href="/post/[id]" as={`/post/${_id}`}>
+            <Button variant="success">Read more ..</Button>
+          </Link>
+        </div>
+      ))}
+    </Container>
+  );
 }
 
 export default function About({ posts }) {
