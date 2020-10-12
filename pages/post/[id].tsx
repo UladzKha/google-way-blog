@@ -1,11 +1,12 @@
 import { ObjectId } from "mongodb";
 import { Container } from "react-bootstrap";
 import { connectToDatabase } from "../../util/mongodb";
+import POST from "../../models/Post";
 
 export default function Post({ post }) {
-  const myPost = JSON.parse(post);
+  const myPost: POST = JSON.parse(post);
   const { title, description, date } = myPost;
-  const options = {
+  const options: Object = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -23,9 +24,9 @@ export default function Post({ post }) {
 export async function getStaticProps({ params }) {
   const { db } = await connectToDatabase();
 
-  const post = await db
+  const post: POST = await db
     .collection("posts")
-    .findOne({ _id: ObjectId(params.id) });
+    .findOne({ _id: new ObjectId(params.id) });
 
   return {
     props: { post: JSON.stringify(post) },
@@ -35,14 +36,14 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const { db } = await connectToDatabase();
 
-  const posts = await db
+  const posts: Array<POST> = await db
     .collection("posts")
     .find({})
     .sort({ date: -1 })
     // .limit(20)
     .toArray();
 
-  const paths = [];
+  const paths: Array<Object> = [];
   posts.map((post) => {
     paths.push({
       params: {
