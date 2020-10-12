@@ -14,15 +14,39 @@ export default function Post({ post }) {
   );
 }
 
-export async function getServerSideProps({ params, query }) {
-  console.log(query);
+export async function getStaticProps({ params }) {
   const { db } = await connectToDatabase();
 
   const post = await db
     .collection("posts")
-    .findOne({ _id: ObjectId(query.id) });
+    .findOne({ _id: ObjectId(params.id) });
 
   return {
     props: { post: JSON.stringify(post) },
+  };
+}
+
+export async function getStaticPaths() {
+  const { db } = await connectToDatabase();
+
+  const posts = await db
+    .collection("posts")
+    .find({})
+    .sort({ date: -1 })
+    // .limit(20)
+    .toArray();
+
+  const paths = [];
+  posts.map((post) => {
+    paths.push({
+      params: {
+        id: post._id.toString(),
+      },
+    });
+  });
+
+  return {
+    paths,
+    fallback: false,
   };
 }

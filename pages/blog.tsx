@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
 function renderPosts(posts) {
-  console.log(posts, "POSTS");
+  // console.log(posts, "POSTS");
 
   return posts.map(({ _id, title, description, date }) => (
     <div key={_id}>
@@ -19,7 +19,6 @@ function renderPosts(posts) {
 export default function About({ posts }) {
   const myPosts = JSON.parse(posts);
 
-  // console.log(myPosts, "posts");
   return <Container>{renderPosts(myPosts)}</Container>;
 }
 
