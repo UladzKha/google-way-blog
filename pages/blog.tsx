@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button, Container } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
+import Post from "../models/Post";
 
-function renderPosts(posts) {
-  const options = {
+function renderPosts(posts: Array<Post>) {
+  const options: Object = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -27,15 +28,15 @@ function renderPosts(posts) {
 }
 
 export default function About({ posts }) {
-  const myPosts = JSON.parse(posts);
+  const myPosts: Array<Post> = JSON.parse(posts);
 
   return <Container>{renderPosts(myPosts)}</Container>;
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
-  const posts = await db
+  const posts: Array<Post> = await db
     .collection("posts")
     .find({})
     .sort({ date: -1 })
