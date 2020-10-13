@@ -16,7 +16,11 @@ export default function Post({ post }) {
     <Container>
       <div dangerouslySetInnerHTML={{ __html: title }} />
       <div dangerouslySetInnerHTML={{ __html: description }} />
-      <h5>{new Date(date).toLocaleDateString("En-en", options)}</h5>
+      <h6
+        style={{ marginTop: 20, display: "flex", flexDirection: "row-reverse" }}
+      >
+        {new Date(date).toLocaleDateString("En-en", options)}
+      </h6>
     </Container>
   );
 }
