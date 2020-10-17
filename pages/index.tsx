@@ -1,11 +1,63 @@
-import { Button, Container } from 'react-bootstrap';
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { connectToDatabase } from "../util/mongodb";
+import Post from "../models/Post";
+import Link from "next/link";
 
+function renderLatestPosts(laterPosts: Array<Post>) {
+  return laterPosts.map(({ _id, title }) => (
+    <div key={_id} style={{marginTop:20}}>
+      <Link href="/post/[id]" as={`/post/${_id}`}>
+        <a style={{ color: "green", fontSize: 20, fontWeight: "bolder" }}>
+          {title}
+        </a>
+      </Link>
+    </div>
+  ));
+}
 
-export default function Home() {
+export default function Home({ posts }) {
+  const latestPosts: Array<Post> = JSON.parse(posts);
+
   return (
     <Container>
-       <Button variant="primary">Primary</Button>{' '}
-      <h1>Hello World!</h1>
+      <Row style={{ marginTop: 50 }}>
+        {/* <Col xs={2}>
+          <Image src="./uladz.png" />
+        </Col> */}
+        <Col xs={12}>
+          <div style={{ fontSize: 30, fontWeight: "bold" }}>
+            Hello! I'm Uladz.
+          </div>
+          <div style={{ fontSize: 20 }}>
+            I'm a software engineer. This website is my digital sandbox - a
+            compedium of the tutorials, articles, and other things I want to
+            share to world.
+          </div>
+        </Col>
+      </Row>
+      <hr />
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 50 }}>
+        Latest Articles
+      </div>
+      {renderLatestPosts(latestPosts)}
+      <hr />
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 50 }}>
+        Projects
+      </div>
+      {/* {renderLatestPosts(latestPosts)} */}
+      <hr />
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  const { db } = await connectToDatabase();
+
+  const posts: Array<Post> = await db
+    .collection("posts")
+    .find({})
+    .sort({ date: -1 })
+    .limit(10)
+    .toArray();
+  return { props: { posts: JSON.stringify(posts) } };
 }

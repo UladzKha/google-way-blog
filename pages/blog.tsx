@@ -16,7 +16,7 @@ function renderPosts(posts: Array<Post>) {
       {posts.map(({ _id, title, description, date }) => (
         <div key={_id}>
           <div dangerouslySetInnerHTML={{ __html: title }} />
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
           {/* <h5>{new Date(date).toLocaleDateString("En-en", options)}</h5> */}
           <Link href="/post/[id]" as={`/post/${_id}`}>
             <Button style={{ marginTop: 20, marginBottom: 25 }} variant="success">
