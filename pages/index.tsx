@@ -19,12 +19,12 @@ export default function Home({ posts }) {
   const latestPosts: Array<Post> = JSON.parse(posts);
 
   return (
-    <Container>
+    <Container >
       <Row style={{ marginTop: 50 }}>
-        {/* <Col xs={2}>
-          <Image src="./uladz.png" />
-        </Col> */}
-        <Col xs={12}>
+        <Col xs={2}>
+          <Image style={{width: '100%'}} src="./uladz.png" />
+        </Col>
+        <Col xs={10}>
           <div style={{ fontSize: 30, fontWeight: "bold" }}>
             Hello! I'm Uladz.
           </div>
@@ -38,7 +38,7 @@ export default function Home({ posts }) {
       <hr />
       <div style={{ display: "flex", marginTop: 50 }}>
         <div style={{ fontSize: 30, fontWeight: "bold" }}>Latest Articles</div>
-        <div style={{ marginLeft: 50 }}>
+        <div style={{ marginLeft: 50, marginTop:5 }}>
           <Link href="/blog">
             <Button variant="success">View all</Button>
           </Link>
@@ -49,7 +49,7 @@ export default function Home({ posts }) {
       <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 50 }}>
         Projects
       </div>
-      {/* {renderLatestPosts(latestPosts)} */}
+      {/* {renderProjects(latestPosts)} */}
       <hr />
     </Container>
   );
