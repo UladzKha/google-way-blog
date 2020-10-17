@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function renderLatestPosts(laterPosts: Array<Post>) {
   return laterPosts.map(({ _id, title }) => (
-    <div key={_id} style={{marginTop:20}}>
+    <div key={_id} style={{ marginTop: 20 }}>
       <Link href="/post/[id]" as={`/post/${_id}`}>
         <a style={{ color: "green", fontSize: 20, fontWeight: "bolder" }}>
           {title}
@@ -36,8 +36,13 @@ export default function Home({ posts }) {
         </Col>
       </Row>
       <hr />
-      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 50 }}>
-        Latest Articles
+      <div style={{ display: "flex", marginTop: 50 }}>
+        <div style={{ fontSize: 30, fontWeight: "bold" }}>Latest Articles</div>
+        <div style={{ marginLeft: 50 }}>
+          <Link href="/blog">
+            <Button variant="success">View all</Button>
+          </Link>
+        </div>
       </div>
       {renderLatestPosts(latestPosts)}
       <hr />

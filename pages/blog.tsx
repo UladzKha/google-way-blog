@@ -1,29 +1,44 @@
 import Link from "next/link";
-import { Button, Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 import Post from "../models/Post";
 
 function renderPosts(posts: Array<Post>) {
   const options: Object = {
-    weekday: "long",
+    // weekday: "long",
     year: "numeric",
-    month: "long",
+    month: "numeric",
     day: "numeric",
   };
 
   return (
     <Container>
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop:20 }}>Articles</div>
       {posts.map(({ _id, title, description, date }) => (
-        <div key={_id}>
-          <div dangerouslySetInnerHTML={{ __html: title }} />
-          {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
-          {/* <h5>{new Date(date).toLocaleDateString("En-en", options)}</h5> */}
-          <Link href="/post/[id]" as={`/post/${_id}`}>
-            <Button style={{ marginTop: 20, marginBottom: 25 }} variant="success">
-              Read more ..
-            </Button>
-          </Link>
-        </div>
+        <Row key={_id}>
+          <Col
+            xs={1}
+            style={{
+              marginTop: 25,
+              fontWeight: "bolder",
+              fontSize: 15,
+              color: "grey",
+            }}
+          >
+            {new Date(date).toLocaleDateString("En-en", options)}
+          </Col>
+          <Col xs={10}>
+            <div style={{ marginTop: 20 }}>
+              <Link href="/post/[id]" as={`/post/${_id}`}>
+                <a
+                  style={{ color: "black", fontSize: 20, fontWeight: "bolder" }}
+                >
+                  {title}
+                </a>
+              </Link>
+            </div>
+          </Col>
+        </Row>
       ))}
     </Container>
   );
