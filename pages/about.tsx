@@ -1,12 +1,30 @@
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
 export default function About({ text }) {
-  const aaa = JSON.parse(text);
-  console.log(aaa[0].body);
+  const about = JSON.parse(text);
+  const {
+    0: { body },
+  } = about;
+
   return (
     <Container>
-      <div dangerouslySetInnerHTML={{ __html: aaa[0].body }} />
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>
+        About me
+      </div>
+      {/* <div dangerouslySetInnerHTML={{ __html: aaa[0].body }} /> */}
+      <div
+        style={{
+          marginTop: 15,
+          fontWeight: "bolder",
+          fontSize: 25,
+          color: "grey",
+          marginBottom: 10,
+        }}
+      >
+        {body}
+      </div>
+      <Image src="./uladz_about.jpg" fluid />
     </Container>
   );
 }

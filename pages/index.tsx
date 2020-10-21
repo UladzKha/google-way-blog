@@ -4,6 +4,7 @@ import Post from "../models/Post";
 import Link from "next/link";
 
 function renderLatestPosts(laterPosts: Array<Post>) {
+  console.log(laterPosts, "POSTS");
   return laterPosts.map(({ _id, title }) => (
     <div key={_id} style={{ marginTop: 20 }}>
       <Link href="/post/[id]" as={`/post/${_id}`}>
@@ -19,10 +20,10 @@ export default function Home({ posts }) {
   const latestPosts: Array<Post> = JSON.parse(posts);
 
   return (
-    <Container >
+    <Container>
       <Row style={{ marginTop: 50 }}>
         <Col xs={2}>
-          <Image style={{width: '100%'}} src="./uladz.png" />
+          <Image style={{ width: "100%" }} src="./uladz.png" />
         </Col>
         <Col xs={10}>
           <div style={{ fontSize: 30, fontWeight: "bold" }}>
@@ -38,7 +39,7 @@ export default function Home({ posts }) {
       <hr />
       <div style={{ display: "flex", marginTop: 50 }}>
         <div style={{ fontSize: 30, fontWeight: "bold" }}>Latest Articles</div>
-        <div style={{ marginLeft: 50, marginTop:5 }}>
+        <div style={{ marginLeft: 50, marginTop: 5 }}>
           <Link href="/blog">
             <Button variant="success">View all</Button>
           </Link>

@@ -1,4 +1,11 @@
-import { Container, Form, FormControl, Nav, Navbar, Button } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  FormControl,
+  Nav,
+  Navbar,
+  Button,
+} from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/NavbarCollapse";
 import Link from "next/link";
 
@@ -7,13 +14,17 @@ export default function Header() {
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand>
-          {/* <img
-            src="./logo.png"
-            height="30"
-            width="30"
-            className="d-inline-block align-top"
-            alt="logo-image"
-          /> */}
+          <Link href="/" passHref>
+            <Nav.Link>
+              <img
+                src="./logo.png"
+                height="30"
+                width="30"
+                className="d-inline-block align-top"
+                alt="logo-image"
+              />
+            </Nav.Link>
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <NavbarCollapse id="responsive-navbar-nav">

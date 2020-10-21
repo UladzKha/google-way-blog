@@ -14,7 +14,9 @@ export default function Post({ post }) {
   };
   return (
     <Container>
-      <div dangerouslySetInnerHTML={{ __html: title }} />
+      <div style={{ marginTop: 25, fontSize: 30, fontWeight: "bolder" }}>
+        {title}
+      </div>
       <div dangerouslySetInnerHTML={{ __html: description }} />
       <h6
         style={{ marginTop: 20, display: "flex", flexDirection: "row-reverse" }}
