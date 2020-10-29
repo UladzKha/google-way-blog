@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 import Post from "../models/Post";
 
@@ -14,7 +14,7 @@ function renderPosts(posts: Array<Post>) {
   return (
     <Container>
       <div style={{ fontSize: 30, fontWeight: "bold", marginTop:20 }}>Articles</div>
-      {posts.map(({ _id, title, description, date }) => (
+      {posts.map(({ _id, title, date }) => (
         <Row key={_id}>
           <Col
             xs={1}

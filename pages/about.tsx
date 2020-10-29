@@ -24,12 +24,12 @@ export default function About({ text }) {
       >
         {body}
       </div>
-      <Image src="./uladz_about.png" fluid />
+      <Image src="./uladz_about.jpg" />
     </Container>
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
   const text = await db
