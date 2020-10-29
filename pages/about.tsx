@@ -24,7 +24,7 @@ export default function About({ text }) {
       >
         {body}
       </div>
-      <Image src="./uladz_about.jpg" fluid />
+      <Image src="./uladz_about.png" fluid />
     </Container>
   );
 }
