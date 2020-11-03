@@ -20,6 +20,7 @@ jobs:
         with:
           name: dist
           path: dist
+        env:  
           MONGO_URI: secrets.MONGO_URI
           MONGO_DB:  secrets.MONGO_DB
   deploy:
@@ -34,6 +35,9 @@ jobs:
         with:
           name: dist
           path: dist
+        env:  
+          MONGO_URI: secrets.MONGO_URI
+          MONGO_DB:  secrets.MONGO_DB  
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
