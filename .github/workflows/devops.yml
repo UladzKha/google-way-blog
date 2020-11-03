@@ -20,7 +20,6 @@ jobs:
         with:
           name: dist
           path: dist
-        env:
   deploy:
     name: Deploy
     needs: build
