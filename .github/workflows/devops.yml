@@ -5,9 +5,9 @@ on:
       - master
         
 env: 
-  MONGO_URI: secrets.MONGO_URI
-  MONGO_DB:  secrets.MONGO_DB
-
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+  MONGO_DB:  ${{ secrets.MONGO_DB }}
+  
 jobs:
   build:
     name: Build
@@ -24,9 +24,7 @@ jobs:
         with:
           name: dist
           path: dist
-        env: 
-           MONGO_URI: process.secrets.MONGO_URI
-           MONGO_DB:  process.secrets.MONGO_DB 
+        
   deploy:
     name: Deploy
     needs: build
