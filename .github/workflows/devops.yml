@@ -24,6 +24,9 @@ jobs:
         with:
           name: dist
           path: dist
+        env: 
+           MONGO_URI: process.secrets.MONGO_URI
+           MONGO_DB:  process.secrets.MONGO_DB 
   deploy:
     name: Deploy
     needs: build
