@@ -20,11 +20,11 @@ jobs:
         with:
           name: dist
           path: dist
-          MONGODB_URI: ${{ MONGODB_URI }}
-          MONGODB_DB:  ${{ MONGODB_DB }}   
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB:  ${{ secrets.MONGODB_DB }}   
         env: 
-          MONGODB_URI: ${{ MONGODB_URI }}
-          MONGODB_DB:  ${{ MONGODB_DB }}  
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB:  ${{ secrets.MONGODB_DB }}  
          
         
   deploy:
