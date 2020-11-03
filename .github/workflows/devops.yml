@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-        - 
+        
 env: 
   MONGO_URI: secrets.MONGO_URI
   MONGO_DB:  secrets.MONGO_DB
