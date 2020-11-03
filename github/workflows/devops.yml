@@ -1,0 +1,14 @@
+name: Build and Deploy
+
+on:
+  push: 
+    branches:
+      - main
+    
+jobs:
+  my-job:
+    steps:
+      - name: Deploy
+      run: |
+        yarn build
+        firebase deploy
