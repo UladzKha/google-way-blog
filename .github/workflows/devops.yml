@@ -21,8 +21,8 @@ jobs:
           name: dist
           path: dist
         env: 
-          MONGO_URI: ${{ secrets.MONGODB_URI }}
-          MONGO_DB:  ${{ secrets.MONGODB_DB }}  
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB:  ${{ secrets.MONGODB_DB }}  
          
         
   deploy:
