@@ -21,6 +21,7 @@ export default function Home({ posts }) {
 
   return (
     <Container>
+      <h1>Hello</h1>
       <Row style={{ marginTop: 50 }}>
         <Col xs={2}>
           <Image style={{ width: "100%" }} src="./uladz.png" />
