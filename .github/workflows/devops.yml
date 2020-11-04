@@ -18,8 +18,8 @@ jobs:
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
-          name: dist
-          path: dist
+          name: out
+          path: out
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           MONGODB_DB:  ${{ secrets.MONGODB_DB }}   
         env: 
@@ -37,11 +37,11 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
-          name: dist
-          path: dist
+          name: out
+          path: out
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.MAncUpPqesJWqJDT2X7VmkfKMqnMXyK9Wt6PbvVa }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_KEY }}
