@@ -25,6 +25,28 @@ export default function About({ text }) {
         {body}
       </div>
       <Image src="./uladz_about.jpg" />
+      <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+        <Image
+          src="./linkedin.png"
+          alt="linkedin"
+          style={{ width: 50, marginRight: 10 }}
+        />
+        <Image
+          src="./facebook.png"
+          alt="facebook"
+          style={{ width: 50, marginRight: 10 }}
+        />
+        <Image
+          src="./github.png"
+          alt="github"
+          style={{ width: 50, marginRight: 10 }}
+        />
+        <Image
+          src="./stack-overflow.png"
+          alt="linkedin"
+          style={{ width: 50 }}
+        />
+      </div>
     </Container>
   );
 }
