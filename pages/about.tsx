@@ -4,7 +4,7 @@ import { connectToDatabase } from "../util/mongodb";
 export default function About({ text }) {
   const about = JSON.parse(text);
   const {
-    0: { body },
+    0: { body, facebook, github, linkedin, stackoverflow },
   } = about;
 
   return (
@@ -12,7 +12,6 @@ export default function About({ text }) {
       <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>
         About me
       </div>
-      {/* <div dangerouslySetInnerHTML={{ __html: aaa[0].body }} /> */}
       <div
         style={{
           marginTop: 15,
@@ -23,29 +22,42 @@ export default function About({ text }) {
         }}
       >
         {body}
+        {body}
+        {body}
       </div>
       <Image src="./uladz_about.jpg" />
+      <h2 style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+        You can find me on social networks:
+      </h2>
       <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
-        <Image
-          src="./linkedin.png"
-          alt="linkedin"
-          style={{ width: 50, marginRight: 10 }}
-        />
-        <Image
-          src="./facebook.png"
-          alt="facebook"
-          style={{ width: 50, marginRight: 10 }}
-        />
-        <Image
-          src="./github.png"
-          alt="github"
-          style={{ width: 50, marginRight: 10 }}
-        />
-        <Image
-          src="./stack-overflow.png"
-          alt="linkedin"
-          style={{ width: 50 }}
-        />
+        <a href={linkedin} target="blank">
+          <Image
+            src="./linkedin.png"
+            alt="linkedin"
+            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+          />
+        </a>
+        <a href={facebook} target="blank">
+          <Image
+            src="./facebook.png"
+            alt="facebook"
+            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+          />
+        </a>
+        <a href={github} target="blank">
+          <Image
+            src="./github.png"
+            alt="github"
+            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+          />
+        </a>
+        <a href={stackoverflow} target="blank">
+          <Image
+            src="./stack-overflow.png"
+            alt="linkedin"
+            style={{ width: 40, cursor: "pointer" }}
+          />
+        </a>
       </div>
     </Container>
   );
