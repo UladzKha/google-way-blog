@@ -4,7 +4,6 @@ import Post from "../models/Post";
 import Link from "next/link";
 
 function renderLatestPosts(laterPosts: Array<Post>) {
-  console.log(laterPosts, "POSTS");
   return laterPosts.map(({ _id, title }) => (
     <div key={_id} style={{ marginTop: 20 }}>
       <Link href="/post/[id]" as={`/post/${_id}`}>

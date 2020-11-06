@@ -17,6 +17,7 @@ function renderPosts(posts: Array<Post>) {
       {posts.map(({ _id, title, date }) => (
         <Row key={_id}>
           <Col
+          
             xs={1}
             style={{
               marginTop: 25,

@@ -25,7 +25,7 @@ export default function About({ text }) {
         {body}
         {body}
       </div>
-      <Image src="./uladz_about.jpg" />
+      <Image src="./uladz_about.jpg" fluid />
       <h2 style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
         You can find me on social networks:
       </h2>
