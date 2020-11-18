@@ -1,6 +1,7 @@
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 import Post from "../models/Post";
+import Project from "../models/Project";
 import Link from "next/link";
 
 function renderLatestPosts(laterPosts: Array<Post>) {
@@ -15,8 +16,25 @@ function renderLatestPosts(laterPosts: Array<Post>) {
   ));
 }
 
-export default function Home({ posts }) {
+function renderProjects(projects: Array<Project>) {
+  console.log(projects, 'BBB')
+  return projects.map(({ _id, name, url }) => (
+    <div style={{ marginTop: 20 }} key={_id}>
+      <Link href={url}>
+        <a target="_blank" style={{ color: "brown", fontSize: 20, fontWeight: "bolder" }}>
+          <div>{name}</div>
+        </a>
+      </Link>
+    </div>
+  ));
+}
+
+export default function Home({ posts, projects }) {
+  console.log(projects, 'PROJECTS')
   const latestPosts: Array<Post> = JSON.parse(posts);
+  const projectsArr: Array<Project> = JSON.parse(projects);
+
+  console.log(projectsArr, 'AAAAA')
 
   return (
     <Container>
@@ -49,7 +67,7 @@ export default function Home({ posts }) {
       <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 50 }}>
         Projects
       </div>
-      {/* {renderProjects(latestPosts)} */}
+      {renderProjects(projectsArr)}
       <hr />
     </Container>
   );
@@ -64,5 +82,18 @@ export async function getStaticProps() {
     .sort({ date: -1 })
     .limit(10)
     .toArray();
-  return { props: { posts: JSON.stringify(posts) } };
+
+  const projects: Array<Project> = await db
+    .collection("projects")
+    .find({})
+    .sort({ date: -1 })
+    .limit(10)
+    .toArray();
+
+  return {
+    props: {
+      posts: JSON.stringify(posts),
+      projects: JSON.stringify(projects)
+    }
+  };
 }
