@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 import Post from "../models/Post";
 
-function renderPosts(posts: Array<Post>) {
+function renderPosts(posts: Array<Post>): JSX.Element {
   const options: Object = {
     // weekday: "long",
     year: "numeric",
@@ -45,7 +45,7 @@ function renderPosts(posts: Array<Post>) {
   );
 }
 
-export default function About({ posts }: { posts: string }) {
+export default function About({ posts }: { posts: string }): JSX.Element {
   const myPosts: Array<Post> = JSON.parse(posts);
 
   return <Container>{renderPosts(myPosts)}</Container>;

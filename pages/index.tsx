@@ -4,7 +4,7 @@ import Post from "../models/Post";
 import Project from "../models/Project";
 import Link from "next/link";
 
-function renderLatestPosts(laterPosts: Array<Post>) {
+function renderLatestPosts(laterPosts: Array<Post>): Array<JSX.Element> {
   return laterPosts.map(({ _id, title }) => (
     <div key={_id} style={{ marginTop: 20 }}>
       <Link href="/post/[id]" as={`/post/${_id}`}>
@@ -16,7 +16,7 @@ function renderLatestPosts(laterPosts: Array<Post>) {
   ));
 }
 
-function renderProjects(projects: Array<Project>) {
+function renderProjects(projects: Array<Project>): Array<JSX.Element> {
   return projects.map(({ _id, name, url }) => (
     <div style={{ marginTop: 20 }} key={_id}>
       <Link href={url}>
@@ -28,7 +28,7 @@ function renderProjects(projects: Array<Project>) {
   ));
 }
 
-export default function Home({ posts, projects } : { posts: string, projects: string }) {
+export default function Home({ posts, projects }: { posts: string, projects: string }): JSX.Element {
   const latestPosts: Array<Post> = JSON.parse(posts);
   const projectsArr: Array<Project> = JSON.parse(projects);
 

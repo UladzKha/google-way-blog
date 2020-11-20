@@ -1,7 +1,7 @@
 import { Container, Image } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
-export default function About({ text }: { text: string }) {
+export default function About({ text }: { text: string }): JSX.Element {
   const about = JSON.parse(text);
   const {
     0: { body, facebook, github, linkedin, stackoverflow },
