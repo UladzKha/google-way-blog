@@ -17,7 +17,6 @@ function renderLatestPosts(laterPosts: Array<Post>) {
 }
 
 function renderProjects(projects: Array<Project>) {
-  console.log(projects, 'BBB')
   return projects.map(({ _id, name, url }) => (
     <div style={{ marginTop: 20 }} key={_id}>
       <Link href={url}>
@@ -30,11 +29,8 @@ function renderProjects(projects: Array<Project>) {
 }
 
 export default function Home({ posts, projects }) {
-  console.log(projects, 'PROJECTS')
   const latestPosts: Array<Post> = JSON.parse(posts);
   const projectsArr: Array<Project> = JSON.parse(projects);
-
-  console.log(projectsArr, 'AAAAA')
 
   return (
     <Container>
