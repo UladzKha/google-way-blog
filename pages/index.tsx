@@ -39,7 +39,7 @@ export default function Home({ posts, projects }) {
           <Image style={{ width: "100%" }} src="./uladz.png" />
         </Col>
         <Col xs={10}>
-          <div style={{ fontSize: 30, fontWeight: "bold" }}>
+          <div style={{ fontSize: 30, fontWeight: "bold" }} data-testid="hello-test">
             Hello! I'm Uladz.
           </div>
           <div style={{ fontSize: 20 }}>
