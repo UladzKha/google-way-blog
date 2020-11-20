@@ -13,11 +13,11 @@ function renderPosts(posts: Array<Post>) {
 
   return (
     <Container>
-      <div style={{ fontSize: 30, fontWeight: "bold", marginTop:20 }}>Articles</div>
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>Articles</div>
       {posts.map(({ _id, title, date }) => (
         <Row key={_id}>
           <Col
-          
+
             xs={1}
             style={{
               marginTop: 25,
@@ -45,7 +45,7 @@ function renderPosts(posts: Array<Post>) {
   );
 }
 
-export default function About({ posts }) {
+export default function About({ posts }: { posts: string }) {
   const myPosts: Array<Post> = JSON.parse(posts);
 
   return <Container>{renderPosts(myPosts)}</Container>;

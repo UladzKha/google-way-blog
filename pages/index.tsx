@@ -28,7 +28,7 @@ function renderProjects(projects: Array<Project>) {
   ));
 }
 
-export default function Home({ posts, projects }) {
+export default function Home({ posts, projects } : { posts: string, projects: string }) {
   const latestPosts: Array<Post> = JSON.parse(posts);
   const projectsArr: Array<Project> = JSON.parse(projects);
 
