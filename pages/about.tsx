@@ -1,4 +1,3 @@
-import { Container, Image } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 
 export default function About({ text }: { text: string }): JSX.Element {
@@ -8,56 +7,44 @@ export default function About({ text }: { text: string }): JSX.Element {
   } = about;
 
   return (
-    <Container>
-      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>
-        About me
-      </div>
-      <div
-        style={{
-          marginTop: 15,
-          fontWeight: "bolder",
-          fontSize: 25,
-          color: "grey",
-          marginBottom: 10,
-        }}
-      >
-        {body}
-      </div>
-      <Image src="./uladz_about.jpg" fluid />
-      <h2 style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+    <div className="container">
+      <div className="about__title">About me</div>
+      <div className="about__body">{body}</div>
+      <img src="./uladz_about.jpg" className="about__image" />
+      <div className="about__social-networks-text">
         You can find me on social networks:
-      </h2>
-      <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+      </div>
+      <div className="about__social-networks-icons">
         <a href={linkedin} target="blank">
-          <Image
+          <img
             src="./linkedin.png"
             alt="linkedin"
-            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+            className="about__social-networks-icon"
           />
         </a>
         <a href={facebook} target="blank">
-          <Image
+          <img
             src="./facebook.png"
             alt="facebook"
-            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+            className="about__social-networks-icon"
           />
         </a>
         <a href={github} target="blank">
-          <Image
+          <img
             src="./github.png"
             alt="github"
-            style={{ width: 40, marginRight: 10, cursor: "pointer" }}
+            className="about__social-networks-icon"
           />
         </a>
         <a href={stackoverflow} target="blank">
-          <Image
+          <img
             src="./stack-overflow.png"
             alt="linkedin"
-            style={{ width: 40, cursor: "pointer" }}
+            className="about__social-networks-icon"
           />
         </a>
       </div>
-    </Container>
+    </div>
   );
 }
 

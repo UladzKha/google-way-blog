@@ -3,7 +3,8 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/header/Header";
 
-import "../components/header/header.scss"
+import "../components/header/header.scss";
+import "../sass/about.scss";
 
 function App({ Component, pageProps }: AppProps) {
   return (
