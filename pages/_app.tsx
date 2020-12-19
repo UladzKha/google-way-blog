@@ -5,6 +5,7 @@ import Header from "../components/header/Header";
 
 import "../components/header/header.scss";
 import "../sass/about.scss";
+import "../sass/blog.scss"
 
 function App({ Component, pageProps }: AppProps) {
   return (
