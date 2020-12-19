@@ -3,7 +3,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import { connectToDatabase } from "../util/mongodb";
 import Post from "../models/Post";
 
-function renderPosts(posts: Array<Post>): JSX.Element {
+interface BlogProps {
+  posts: string;
+}
+
+function renderPosts(posts: Array<Post>) {
   const options: Object = {
     // weekday: "long",
     year: "numeric",
@@ -13,11 +17,12 @@ function renderPosts(posts: Array<Post>): JSX.Element {
 
   return (
     <Container>
-      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>Articles</div>
+      <div style={{ fontSize: 30, fontWeight: "bold", marginTop: 20 }}>
+        Articles
+      </div>
       {posts.map(({ _id, title, date }) => (
         <Row key={_id}>
           <Col
-
             xs={1}
             style={{
               marginTop: 25,
@@ -45,7 +50,7 @@ function renderPosts(posts: Array<Post>): JSX.Element {
   );
 }
 
-export default function About({ posts }: { posts: string }): JSX.Element {
+export default function About({ posts }: BlogProps) {
   const myPosts: Array<Post> = JSON.parse(posts);
 
   return <Container>{renderPosts(myPosts)}</Container>;

@@ -4,6 +4,11 @@ import Post from "../models/Post";
 import Project from "../models/Project";
 import Link from "next/link";
 
+interface HomeProps {
+  posts: string;
+  projects: string;
+}
+
 function renderLatestPosts(laterPosts: Array<Post>): Array<JSX.Element> {
   return laterPosts.map(({ _id, title }) => (
     <div key={_id} style={{ marginTop: 20 }}>
@@ -20,7 +25,10 @@ function renderProjects(projects: Array<Project>): Array<JSX.Element> {
   return projects.map(({ _id, name, url }) => (
     <div style={{ marginTop: 20 }} key={_id}>
       <Link href={url}>
-        <a target="_blank" style={{ color: "brown", fontSize: 20, fontWeight: "bolder" }}>
+        <a
+          target="_blank"
+          style={{ color: "brown", fontSize: 20, fontWeight: "bolder" }}
+        >
           <div>{name}</div>
         </a>
       </Link>
@@ -28,7 +36,7 @@ function renderProjects(projects: Array<Project>): Array<JSX.Element> {
   ));
 }
 
-export default function Home({ posts, projects }: { posts: string, projects: string }): JSX.Element {
+export default function Home({ posts, projects }: HomeProps) {
   const latestPosts: Array<Post> = JSON.parse(posts);
   const projectsArr: Array<Project> = JSON.parse(projects);
 
@@ -39,7 +47,10 @@ export default function Home({ posts, projects }: { posts: string, projects: str
           <Image style={{ width: "100%" }} src="./uladz.png" />
         </Col>
         <Col xs={10}>
-          <div style={{ fontSize: 30, fontWeight: "bold" }} data-testid="hello-test">
+          <div
+            style={{ fontSize: 30, fontWeight: "bold" }}
+            data-testid="hello-test"
+          >
             Hello! I'm Uladz.
           </div>
           <div style={{ fontSize: 20 }}>
@@ -89,7 +100,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts: JSON.stringify(posts),
-      projects: JSON.stringify(projects)
-    }
+      projects: JSON.stringify(projects),
+    },
   };
 }

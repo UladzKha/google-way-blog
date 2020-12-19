@@ -1,6 +1,10 @@
 import { connectToDatabase } from "../util/mongodb";
 
-export default function About({ text }: { text: string }): JSX.Element {
+interface AboutProps {
+  text: string;
+}
+
+export default function About({ text }: AboutProps) {
   const about = JSON.parse(text);
   const {
     0: { body, facebook, github, linkedin, stackoverflow },
