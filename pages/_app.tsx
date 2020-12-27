@@ -1,11 +1,10 @@
 import { AppProps } from "next/app";
-import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../components/header/Header";
 
 import "../components/header/header.scss";
 import "../sass/about.scss";
-import "../sass/blog.scss"
+import "../sass/blog.scss";
 
 function App({ Component, pageProps }: AppProps) {
   return (
